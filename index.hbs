@@ -1,16 +1,17 @@
 {{!< default}}
 
-<header id="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}} data-stellar-background-ratio="0.5" data-stellar-horizontal-offset="50" data-stellar-vertical-offset="50">
-	<a href="/" id="blog-title">{{@blog.title}}</a>
-	{{> links}}
-	<div class="cf"></div>
-	
-	<div id="title">
-		<h1>A clean & simple template for ghost</h1>
-		<h2>{{@blog.description}}</h2>
-	</div>
+{{> header}}
 
-</header>
+<div role="banner" class="site-head">
+    <div class="vertical">
+      <div class="cover-image" style="background-image: url({{@blog.cover}})"></div>
+      <div class="inner">
+        <h1 class="blog-title">{{@blog.title}}</h1>
+        <p class="blog-description">{{@blog.description}}</p>
+      </div>
+    </div>
+</div>
+
 
 <div class="container" id="content" role="main">
 
@@ -18,9 +19,12 @@
 
     <article class="{{post_class}}" id="post-{{id}}">
 		
-		<h1><a href="{{url}}">{{title}}</a></h1>
-		<span class="meta">{{date format='YYYY-MM-DD'}} {{#if tags}} {{#tags}} #{{name}} {{/tags}} {{/if}}</span>
-		<p class="summary">{{excerpt}}</p>
+		<a href="{{url}}" itemprop="url" title="{{title}}" class="post-cover">{{content words="0"}}</a>
+		<div class="post-content">
+			<h1 class="post-title"><a href="{{url}}" title="{{title}}">{{title}}</a></h1>
+			<p class="summary post-excerpt">{{excerpt}}</p>
+			<span class="post-meta">{{date format='DD/MM,YYYY'}} · {{#if tags}} {{#tags}} #{{name}} {{/tags}} {{/if}}</span>
+		</div>
     </article>
 
     {{/foreach}}

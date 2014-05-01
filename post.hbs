@@ -1,25 +1,57 @@
 {{!< default}}
 
-<header id="post-header" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}  data-stellar-background-ratio="0.5" data-stellar-horizontal-offset="50" data-stellar-vertical-offset="50">
+{{> header}}
+
+
+<!-- <header id="post-header" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}  data-stellar-background-ratio="0.5" data-stellar-horizontal-offset="50" data-stellar-vertical-offset="50">
 	<a href="/" id="blog-title">{{@blog.title}}</a>
 	{{> links}}
 	
 	<div class="cf"></div>
 	
-	{{#post}}
+	
 	
 	<div id="title">
 		<h1>{{title}}</h1>
 		<h2>{{date published_at format="MMMM DD, YYYY"}}</h2>
 	</div>
-</header>
+</header> -->
 
-<div class="container" id="content" role="main">
-
-    <article class="{{post_class}}" id="post-{{id}}">
-		{{content}}
+<div class="container" role="main">
+	{{#post}}
+    <article class="{{post_class}} content" id="post-{{id}}">
+    	<div id="title" class="post-title">
+			<h1><a href="{{url}}" title="{{title}}">{{title}}</a></h1>
+			<span class="post-meta">{{date format='DD/MM,YYYY'}} · {{#if tags}} {{#tags}} #{{name}} {{/tags}} {{/if}}</span>
+		</div>
+		<div class="post-body">
+			{{content}}
+		</div>
     </article>
-	
-	{{/post}}
+
+	<footer class="post-footer">
+		{{#author}}
+			<section class="author">
+		      <h4 itemprop="author">{{name}}</h4>
+		   </section>
+		{{/author}}
+	   <section class="share">
+	      <h4>分享至</h4>
+	      <div class="bdsharebuttonbox">
+		        <a class="bds_tsina" data-cmd="tsina" href="#" title="分享到新浪微博">新浪微博</a>
+		        <a class="bds_renren" data-cmd="renren" href="#" title="分享到人人网">人人网</a>
+		        <a class="bds_douban" data-cmd="douban" href="#" title="分享到豆瓣网">豆瓣网</a>
+		        <a class="bds_qzone" data-cmd="qzone" href="#" title="分享到QQ空间">QQ空间</a>
+		        <a class="bds_tqq" data-cmd="tqq" href="#" title="分享到腾讯微博">腾讯微博</a>
+		        <a class="bds_weixin" data-cmd="weixin" href="#" title="分享到微信">微信</a>
+		        <a class="bds_more" data-cmd="more" href="#">分享到：</a>
+		    </div><script>
+		window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+		    </script>
+	   </section>
+	</footer>
+
+	{{> duoshuo}}
 
 </div>
+{{/post}}
